@@ -1,0 +1,30 @@
+<div class="p-4 d-flex justify-content-end">
+  <button (click)="openDialogCreateUser()" mat-flat-button color="primary">
+    <mat-icon>add</mat-icon> Novo usuário
+  </button>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-4" *ngFor="let user of users">
+        <mat-card class="mb-5">
+          <mat-card-header>
+            <mat-card-title>{{ user.nome | uppercase }}</mat-card-title>
+            <mat-card-subtitle>{{ user.cargo }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Email : {{ user.email }}</p>
+            <p>Senha : {{ user.password }}</p>
+            <p>Salário : {{ user.salario | currency : "BRL" }}</p>
+            <mat-divider></mat-divider>
+            <p>Id : {{ user.id }}</p>
+            <p>Tipo : {{ user.tipo }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-flat-button color="danger">Excluir</button>
+            <button mat-flat-button color="primary">Editar</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
