@@ -3,28 +3,53 @@
     <mat-icon>add</mat-icon> Novo usuário
   </button>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-4" *ngFor="let user of users">
-        <mat-card class="mb-5">
-          <mat-card-header>
-            <mat-card-title>{{ user.nome | uppercase }}</mat-card-title>
-            <mat-card-subtitle>{{ user.cargo }}</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>Email : {{ user.email }}</p>
-            <p>Senha : {{ user.password }}</p>
-            <p>Salário : {{ user.salario | currency : "BRL" }}</p>
-            <mat-divider></mat-divider>
-            <p>Id : {{ user.id }}</p>
-            <p>Tipo : {{ user.tipo }}</p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-flat-button color="danger">Excluir</button>
-            <button mat-flat-button color="primary">Editar</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-    </div>
+  <div class="container d-flex flex-column">
+    <mat-accordion *ngFor="let time of times">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> {{ time.nome }} </mat-panel-title>
+          <mat-panel-description> </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="row">
+          <ng-container *ngFor="let usuario of time.funcionarios">
+            <mat-card class="mb-5 col-3" *ngIf="usuario.time === time.nome">
+              <mat-card-header>
+                <mat-card-title>{{ usuario.nome | uppercase }}</mat-card-title>
+                <mat-card-subtitle>{{ usuario.cargo }}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p>Email : {{ usuario.email }}</p>
+                <p>Senha : {{ usuario.senha }}</p>
+                <p>Salário : {{ usuario.salario | currency : "BRL" }}</p>
+                <p>Tipo : {{ usuario.tipo }}</p>
+                <p>Time : {{ usuario.time }}</p>
+                <mat-divider></mat-divider>
+              </mat-card-content>
+              <mat-card-actions>
+                <button
+                  (click)="openDialogDeleteUser(usuario)"
+                  mat-flat-button
+                  color="danger"
+                >
+                  Excluir
+                </button>
+                <button
+                  (click)="openDialogEditUser(usuario)"
+                  mat-flat-button
+                  color="primary"
+                >
+                  Editar
+                </button>
+              </mat-card-actions>
+            </mat-card>
+          </ng-container>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+      >
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
 </div>

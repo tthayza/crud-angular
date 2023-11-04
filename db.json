@@ -7,7 +7,8 @@
       "tipo": "ADMIN",
       "senha": "123",
       "cargo": "Dev Front",
-      "salario": "20000"
+      "salario": "20000",
+      "time": "TIME 3"
     },
     {
       "id": 2,
@@ -16,7 +17,8 @@
       "tipo": "USUARIO",
       "senha": "321",
       "cargo": "Pet",
-      "salario": "4000"
+      "salario": "4000",
+      "time": "TIME 3"
     },
     {
       "nome": "Cleber de Oliveira POST",
@@ -25,7 +27,46 @@
       "senha": "123",
       "cargo": "Tech Lead",
       "salario": "20000",
+      "id": 3,
+      "time": "TIME 3"
+    },
+    {
+      "id": 6,
+      "nome": "Ilza",
+      "email": "il@gmail.com",
+      "senha": "653",
+      "tipo": "FUNCIONARIO",
+      "cargo": "Dev Pleno",
+      "salario": 80000,
+      "time": "TIME 3"
+    },
+    {
+      "id": 7,
+      "nome": "Jessica",
+      "email": "j@ssica.com",
+      "senha": "5255",
+      "tipo": "FUNCIONARIO",
+      "cargo": "Dev Pleno",
+      "salario": 2000,
+      "time": "TIME 4"
+    }
+  ],
+  "times": [
+    {
+      "nome": "TIME 1",
+      "id": 1
+    },
+    {
+      "nome": "TIME 2",
+      "id": 2
+    },
+    {
+      "nome": "TIME 3",
       "id": 3
+    },
+    {
+      "nome": "TIME 4",
+      "id": 4
     }
   ]
 }
