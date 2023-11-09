@@ -4,31 +4,21 @@
       "id": 1,
       "nome": "Thayza Oliveira",
       "email": "thayza@gmail.com",
-      "tipo": "ADMIN",
       "senha": "123",
+      "tipo": "ADMIN",
       "cargo": "Dev Front",
       "salario": "20000",
-      "time": "TIME 3"
+      "time": "TIME 1"
     },
     {
       "id": 2,
       "nome": "Frederico",
       "email": "fred@gmail.com",
-      "tipo": "USUARIO",
       "senha": "321",
+      "tipo": "USUARIO",
       "cargo": "Pet",
       "salario": "4000",
-      "time": "TIME 3"
-    },
-    {
-      "nome": "Cleber de Oliveira POST",
-      "email": "cleber@gmail.com",
-      "tipo": "ADMIN",
-      "senha": "123",
-      "cargo": "Tech Lead",
-      "salario": "20000",
-      "id": 3,
-      "time": "TIME 3"
+      "time": "TIME 1"
     },
     {
       "id": 6,
@@ -41,14 +31,34 @@
       "time": "TIME 3"
     },
     {
-      "id": 7,
-      "nome": "Jessica",
-      "email": "j@ssica.com",
-      "senha": "5255",
+      "id": 8,
+      "nome": "GianduiaS",
+      "email": "gi@gmail.com",
+      "senha": "5145",
       "tipo": "FUNCIONARIO",
       "cargo": "Dev Pleno",
-      "salario": 2000,
-      "time": "TIME 4"
+      "salario": 5000,
+      "time": "TIME 3"
+    },
+    {
+      "id": 9,
+      "nome": "Matheus",
+      "email": "m@gmail.com",
+      "senha": "145",
+      "tipo": "FUNCIONARIO",
+      "cargo": "Product Owner",
+      "salario": 500,
+      "time": "TIME 3"
+    },
+    {
+      "id": 10,
+      "nome": "jAMYLE",
+      "email": "JAM@GMAIL.COM",
+      "senha": "222",
+      "tipo": "FUNCIONARIO",
+      "cargo": "Dev Júnior",
+      "salario": 52222,
+      "time": "TIME 1"
     }
   ],
   "times": [

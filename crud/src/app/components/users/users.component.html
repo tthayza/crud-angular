@@ -1,8 +1,10 @@
+<app-header></app-header>
 <div class="p-4 d-flex justify-content-end">
-  <button (click)="openDialogCreateUser()" mat-flat-button color="primary">
+  <button mat-flat-button color="primary" [routerLink]="'/adicionar-usuario'">
     <mat-icon>add</mat-icon> Novo usuário
   </button>
 
+  <h1>{{ usuario }}</h1>
   <div class="container d-flex flex-column">
     <mat-accordion *ngFor="let time of times">
       <mat-expansion-panel>
@@ -11,32 +13,35 @@
           <mat-panel-description> </mat-panel-description>
         </mat-expansion-panel-header>
         <div class="row">
-          <ng-container *ngFor="let usuario of time.funcionarios">
-            <mat-card class="mb-5 col-3" *ngIf="usuario.time === time.nome">
+          <ng-container *ngFor="let funcionario of time.funcionarios">
+            <mat-card class="mb-5 col-3">
               <mat-card-header>
-                <mat-card-title>{{ usuario.nome | uppercase }}</mat-card-title>
-                <mat-card-subtitle>{{ usuario.cargo }}</mat-card-subtitle>
+                <mat-card-title>{{
+                  funcionario.nome | uppercase
+                }}</mat-card-title>
+                <mat-card-subtitle>{{ funcionario.cargo }}</mat-card-subtitle>
               </mat-card-header>
               <mat-card-content>
-                <p>Email : {{ usuario.email }}</p>
-                <p>Senha : {{ usuario.senha }}</p>
-                <p>Salário : {{ usuario.salario | currency : "BRL" }}</p>
-                <p>Tipo : {{ usuario.tipo }}</p>
-                <p>Time : {{ usuario.time }}</p>
+                <p>Email : {{ funcionario.email }}</p>
+                <p>Senha : {{ funcionario.senha }}</p>
+                <p>Salário : {{ funcionario.salario | currency : "BRL" }}</p>
+                <p>Tipo : {{ funcionario.tipo }}</p>
+                <p>Time : {{ funcionario.time }}</p>
                 <mat-divider></mat-divider>
               </mat-card-content>
               <mat-card-actions>
                 <button
-                  (click)="openDialogDeleteUser(usuario)"
+                  (click)="openDialogDeleteUser(funcionario)"
                   mat-flat-button
                   color="danger"
                 >
                   Excluir
                 </button>
+                <!-- (click)="openDialogEditUser(funcionario)" -->
                 <button
-                  (click)="openDialogEditUser(usuario)"
                   mat-flat-button
                   color="primary"
+                  (click)="openDialogEditUser(funcionario)"
                 >
                   Editar
                 </button>

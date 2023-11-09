@@ -5,7 +5,7 @@ import { Usuario } from 'src/app/models/usuario-model';
 import { TimeService } from 'src/app/service/time.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { DeleteUserComponent } from '../delete-user/delete-user.component';
-import { FormUserComponent } from '../form-user/form-user.component';
+import { EditFormComponent } from '../edit-form/edit-form.component';
 
 @Component({
   selector: 'app-users',
@@ -14,6 +14,7 @@ import { FormUserComponent } from '../form-user/form-user.component';
 })
 export class UsersComponent {
   @Input() public usuario?: Usuario;
+
   usuarios!: Usuario[];
   times!: Time[];
   panelOpenState = false;
@@ -22,7 +23,6 @@ export class UsersComponent {
     private service: UsuarioService,
     private serviceTimes: TimeService
   ) {
-    console.log(this.service.getTeste());
     this.service.getUsuarios().subscribe((res) => {
       if (res) {
         this.usuarios = res;
@@ -35,7 +35,6 @@ export class UsersComponent {
         res.error;
       }
     });
-    this.service.setTeste();
   }
 
   private buildTimes() {
@@ -70,32 +69,8 @@ export class UsersComponent {
     });
   }
 
-  openDialogCreateUser() {
-    const dialogRef = this.dialog.open(FormUserComponent, {
-      disableClose: true,
-      width: '80%',
-    });
-
-    dialogRef.afterClosed().subscribe((devolutivaModal: Usuario) => {
-      console.log('foi invocado');
-      if (devolutivaModal) {
-        this.service.criarUsuario(devolutivaModal).subscribe((res) => {
-          console.log(res);
-          this.service.getUsuarios().subscribe((res) => {
-            if (res) {
-              this.usuarios = res;
-              this.buildTimes();
-            } else {
-              res.error;
-            }
-          });
-        });
-      }
-    });
-  }
-
   openDialogEditUser(usuario: Usuario) {
-    const dialogRef = this.dialog.open(FormUserComponent, {
+    const dialogRef = this.dialog.open(EditFormComponent, {
       disableClose: true,
       width: '80%',
       data: usuario,
@@ -103,18 +78,37 @@ export class UsersComponent {
 
     dialogRef.afterClosed().subscribe((devolutivaModal: Usuario) => {
       if (devolutivaModal) {
-        this.service.editarUsuario(devolutivaModal).subscribe((res) => {
-          console.log(res);
-          this.service.getUsuarios().subscribe((res) => {
-            if (res) {
-              this.usuarios = res;
-              this.buildTimes();
-            } else {
-              res.error;
-            }
-          });
+        this.service.getUsuarios().subscribe((res) => {
+          if (res) {
+            this.usuarios = res;
+            this.buildTimes();
+          } else {
+            res.error;
+          }
         });
       }
     });
   }
 }
+// openDialogCreateUser() {
+//   const dialogRef = this.dialog.open(FormUserComponent, {
+//     disableClose: true,
+//     width: '80%',
+//   });
+
+// dialogRef.afterClosed().subscribe((devolutivaModal: Usuario) => {
+//   console.log('foi invocado');
+//   if (devolutivaModal) {
+//     this.service.criarUsuario(devolutivaModal).subscribe((res) => {
+//       console.log(res);
+//       this.service.getUsuarios().subscribe((res) => {
+//         if (res) {
+//           this.usuarios = res;
+//           this.buildTimes();
+//         } else {
+//           res.error;
+//         }
+//       });
+//     });
+//   }
+// });

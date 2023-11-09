@@ -1,26 +1,23 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Time } from 'src/app/models/time-model';
 import { Usuario } from 'src/app/models/usuario-model';
 import { TimeService } from 'src/app/service/time.service';
-import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
-  selector: 'app-form-user',
-  templateUrl: './form-user.component.html',
-  styleUrls: ['./form-user.component.scss'],
+  selector: 'app-edit-form',
+  templateUrl: './edit-form.component.html',
+  styleUrls: ['./edit-form.component.scss'],
 })
-export class FormUserComponent {
-  @Input() usuarioAtual!: Usuario;
-  @Input() editarUsuario: boolean = false;
-  @Output() fechar = new EventEmitter<any>();
+export class EditFormComponent {
   public user?: Usuario;
   public userForm!: FormGroup;
 
   usuarios!: Usuario[];
   times!: Time[];
-
+  editarUsuario: boolean = false;
+  usuarioAtual!: Usuario;
   tipos = ['ADMIN', 'FUNCIONARIO'];
   cargos = [
     'Dev Júnior',
@@ -34,14 +31,22 @@ export class FormUserComponent {
   public phoneMask = '(00) 0 0000-0000';
 
   constructor(
+    public dialogRef: MatDialogRef<EditFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
-    private service: TimeService,
-    private userservice: UsuarioService,
-    private router: Router
+    private service: TimeService
   ) {
     this.service.getTimes().subscribe((res) => {
       this.times = res;
     });
+    if (this.data) {
+      this.editarUsuario = true;
+      this.usuarioAtual = this.data;
+      this.buildForm(this.usuarioAtual);
+    } else {
+      this.editarUsuario = false;
+      this.buildForm(this.usuarioAtual);
+    }
   }
 
   ngOnInit() {
@@ -71,26 +76,26 @@ export class FormUserComponent {
   }
 
   public onCancel(): void {
-    if (this.editarUsuario) {
-      this.fechar.emit(false);
-    } else {
-      this.router.navigate(['/listar-times']);
-    }
+    this.dialogRef.close(this.user);
+  }
+
+  fechar(event: any): void {
+    this.dialogRef.close(event);
   }
 
   public onSubmit(): void {
-    if (this.editarUsuario) {
-      this.userservice.editarUsuario(this.userForm.value).subscribe((res) => {
-        this.fechar.emit(true);
-      });
-    } else {
-      this.userservice.criarUsuario(this.userForm.value).subscribe((res) => {
-        this.router.navigate(['/listar-times']);
-      });
-    }
+    this.dialogRef.close(this.userForm.value);
   }
 }
-
+// if (this.editarUsuario) {
+//   this.userservice.editarUsuario(this.userForm.value).subscribe((res) => {
+//     this.fechar.emit(true);
+//   });
+// } else {
+//   this.userservice.criarUsuario(this.userForm.value).subscribe((res) => {
+//     this.router.navigate(['/listar-times']);
+//   });
+// }
 // this.userservice.getUsuarios().subscribe((res) => {
 //   if (res) {
 //     this.usuarios = res;
@@ -113,4 +118,12 @@ export class FormUserComponent {
 // } else {
 //   this.editarUsuario = false;
 //   this.buildForm(this.usuarioAtual);
+// }
+
+// private buildTimes() {
+//   this.times.forEach((time) => {
+//     time.funcionarios = this.usuarios.filter(
+//       (usuario) => usuario.time === time.nome
+//     );
+//   });
 // }

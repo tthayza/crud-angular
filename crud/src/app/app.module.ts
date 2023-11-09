@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxMaskModule } from 'ngx-mask';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DeleteUserComponent } from './components/delete-user/delete-user.component';
 import { FormUserComponent } from './components/form-user/form-user.component';
@@ -14,6 +15,7 @@ import { LoginComponent } from './components/login/login.component';
 import { UsersComponent } from './components/users/users.component';
 import { cepMaskPipe } from './pipes/cep-mask.pipe';
 import { AngularMaterialModule } from './utils/angular-material.module';
+import { EditFormComponent } from './components/edit-form/edit-form.component';
 
 registerLocaleData(ptBr);
 
@@ -26,6 +28,7 @@ registerLocaleData(ptBr);
     cepMaskPipe,
     FormUserComponent,
     DeleteUserComponent,
+    EditFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ registerLocaleData(ptBr);
     NgxMaskModule.forRoot(),
     HttpClientModule,
     AngularMaterialModule,
+    AppRoutingModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' }],
   bootstrap: [AppComponent],
