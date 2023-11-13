@@ -14,7 +14,7 @@ import { EditFormComponent } from '../edit-form/edit-form.component';
 })
 export class UsersComponent {
   @Input() public usuario?: Usuario;
-
+  usuarioLogado!: Usuario;
   usuarios!: Usuario[];
   times!: Time[];
   panelOpenState = false;
@@ -34,6 +34,7 @@ export class UsersComponent {
       } else {
         res.error;
       }
+      this.usuarioLogado = JSON.parse(localStorage.getItem('USER') || 'null');
     });
   }
 

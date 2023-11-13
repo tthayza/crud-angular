@@ -9,27 +9,23 @@ import { NgxMaskModule } from 'ngx-mask';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DeleteUserComponent } from './components/delete-user/delete-user.component';
-import { FormUserComponent } from './components/form-user/form-user.component';
-import { HeaderComponent } from './components/header/header.component';
-import { LoginComponent } from './components/login/login.component';
-import { UsersComponent } from './components/users/users.component';
+import { EditFormComponent } from './components/edit-form/edit-form.component';
+import { FormUserModule } from './components/form-user/form-user.module';
 import { cepMaskPipe } from './pipes/cep-mask.pipe';
 import { AngularMaterialModule } from './utils/angular-material.module';
-import { EditFormComponent } from './components/edit-form/edit-form.component';
 
 registerLocaleData(ptBr);
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    HeaderComponent,
-    UsersComponent,
     cepMaskPipe,
-    FormUserComponent,
     DeleteUserComponent,
     EditFormComponent,
+    // HeaderComponent,
   ],
+  // exports: [HeaderComponent],
+
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -39,6 +35,7 @@ registerLocaleData(ptBr);
     HttpClientModule,
     AngularMaterialModule,
     AppRoutingModule,
+    FormUserModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' }],
   bootstrap: [AppComponent],

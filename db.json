@@ -59,6 +59,16 @@
       "cargo": "Dev Júnior",
       "salario": 52222,
       "time": "TIME 1"
+    },
+    {
+      "id": 11,
+      "nome": "Matheus",
+      "email": "m@gmail.com",
+      "senha": "666",
+      "tipo": "FUNCIONARIO",
+      "cargo": "Product Owner",
+      "salario": 50000,
+      "time": "TIME 2"
     }
   ],
   "times": [

@@ -1,6 +1,11 @@
 <app-header></app-header>
 <div class="p-4 d-flex justify-content-end">
-  <button mat-flat-button color="primary" [routerLink]="'/adicionar-usuario'">
+  <button
+    mat-flat-button
+    color="primary"
+    [routerLink]="'/adicionar-usuario'"
+    [disabled]="usuarioLogado.tipo !== 'ADMIN'"
+  >
     <mat-icon>add</mat-icon> Novo usuário
   </button>
 
@@ -34,6 +39,7 @@
                   (click)="openDialogDeleteUser(funcionario)"
                   mat-flat-button
                   color="danger"
+                  [disabled]="usuarioLogado.tipo !== 'ADMIN'"
                 >
                   Excluir
                 </button>

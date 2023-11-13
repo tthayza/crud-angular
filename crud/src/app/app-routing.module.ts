@@ -1,21 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormUserComponent } from './components/form-user/form-user.component';
-import { LoginComponent } from './components/login/login.component';
-import { UsersComponent } from './components/users/users.component';
+import { AuthGuard } from './guards/auth-guard';
 
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent,
+    loadChildren: () =>
+      import('./components/login/login.module').then((m) => m.LoginModule),
   },
   {
     path: 'listar-times',
-    component: UsersComponent,
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./components/users/users.module').then((m) => m.UsersModule),
   },
   {
     path: 'adicionar-usuario',
-    component: FormUserComponent,
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./components/form-user/form-user.module').then(
+        (m) => m.FormUserModule
+      ),
   },
   {
     path: '**',

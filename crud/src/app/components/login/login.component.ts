@@ -42,7 +42,7 @@ export class LoginComponent {
 
   login(): void {
     this.user = { email: this.form.value.email, senha: this.form.value.senha };
-    this.fazerLogin(this.user);
+    this.fazerLogin(this.usuario);
   }
   fazerLogin(user: any) {
     const existeUsuario: any | undefined = this.usuarios?.find(
@@ -53,6 +53,7 @@ export class LoginComponent {
       console.log('Usuário autenticado', existeUsuario);
       this.usuario = existeUsuario;
       localStorage.setItem('USER', JSON.stringify(this.usuario));
+      localStorage.setItem('TIMETOKEN', JSON.stringify(new Date().getTime()));
       this.router.navigate(['/listar-times']);
     } else {
       console.log('Falha no login');
